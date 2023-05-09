@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+</head>
+<body>
+<button onclick="copyPlainText()">Copy as plain text</button>
+    <script>
+        function copyPlainText() {
+            const resultDivs = document.getElementsByClassName("result");
+            let plainText = "";
+            for (let i = 0; i < resultDivs.length; i++) {
+                plainText += resultDivs[i].innerText.replace(/<br>/g, "") + "\n";
+            }
+            navigator.clipboard.writeText(plainText);
+        }
+    </script>
+    <h1>Results</h1>
+    {% for result in results %}
+        <div class="result">{{ result|safe }}</div>
+    {% endfor %}
+
+</body>
+</html>
